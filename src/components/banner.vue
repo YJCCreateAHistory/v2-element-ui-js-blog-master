@@ -51,11 +51,14 @@
         methods:{
             getSocial(){
                 this.$store.dispatch('getSocials').then(data =>{
+                    console.log(data, 1);
                     this.socials = data
                 })
             },
             getWebSiteInfo(){
                 this.$store.dispatch('getSiteInfo').then(data =>{
+                    console.log(data, 2);
+
                     this.websiteInfo = data
                 })
             }
@@ -130,7 +133,7 @@
         text-align: center;
         img {
             width: 80px;
-            height: auto;
+            height: 80px;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.3);
         }

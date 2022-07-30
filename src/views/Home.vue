@@ -71,17 +71,20 @@ export default {
       features: [
         {
           id: 1,
-          title: "Akina",
+          name:'/category/全部',
+          title: "全部文章",
           img: "https://s1.ax1x.com/2020/05/14/YDfRnU.jpg",
         },
         {
           id: 2,
-          title: "使用说明",
+          title: "关于我",
+          name:'/about',
           img: "https://s1.ax1x.com/2020/05/14/YDf4AJ.jpg",
         },
         {
           id: 3,
           title: "文章归档",
+          name:'/bout',
           img: "https://s1.ax1x.com/2020/05/14/YDfT91.jpg",
         },
       ],

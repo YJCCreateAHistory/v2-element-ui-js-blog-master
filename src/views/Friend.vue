@@ -11,16 +11,16 @@
             <div class="statement">
                 <p>首先将需要接入本博客站点，然后给我<router-link to="/about#Guestbook">留言</router-link>提供您站点的如下信息：</p>
                 <quote>
-                    <p>站点名称：{{websiteInfo.name}}</p>
-                    <p>站点链接：{{websiteInfo.domain}}</p>
-                    <p>简短描述：{{websiteInfo.desc}}</p>
+                    <p>站点名称：xc-blog</p>
+                    <p>站点链接：{{websiteInfo.avatar}}</p>
+                    <p>简短描述：{{websiteInfo.psc}}</p>
                 </quote>
                 <p>接入成功后将会以邮件的方式通知。</p>
             </div>
             <!----->
             <hr/>
             <div class="friend-list animate">
-                <div class="friend-item" v-for="item in list" :key="item.id"><a target="_blank" :href="item.path"><div class="site-name">{{item.siteName}}</div><div class="site-detail">{{item.desc}}</div></a></div>
+                <div class="friend-item" v-for="item in list" :key="item.id"><a target="_blank" :href="item.href"><div class="site-name">{{item.title}}</div><div class="site-detail">{{item.href}}</div></a></div>
             </div>
         </div>
     </div>
@@ -30,6 +30,7 @@
     import sectionTitle from '@/components/section-title'
     import Quote from "@/components/quote";
     import {fetchFriend} from '../api'
+    import { GetRequest, PostRequest } from '../api/http';
     export default {
         name: "Friend",
         data(){
@@ -44,15 +45,23 @@
         },
         methods: {
             fetchFriend() {
-                fetchFriend().then(res => {
-                    this.list = res.data || []
-                }).catch(err => {
-                    console.log(err)
+                // fetchFriend().then(res => {
+                //     this.list = res.data || []
+                // }).catch(err => {
+                //     console.log(err)
+                // })
+                GetRequest('/socials/info').then(data=>{
+                    // console.log(data)
+                    this.list = data.records
                 })
             },
             getWebSiteInfo(){
-                this.$store.dispatch('getSiteInfo').then(data =>{
-                    this.websiteInfo = data
+                // this.$store.dispatch('getSiteInfo').then(data =>{
+                //     this.websiteInfo = data
+                // })
+                PostRequest("/site/info").then(data=>{
+                    console.log(data)
+                    this.websiteInfo = data.records[0]
                 })
             }
         },

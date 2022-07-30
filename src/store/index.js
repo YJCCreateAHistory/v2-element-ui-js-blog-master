@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {getTimeInterval} from '../utils/index'
 import {fetchSocial,fetchSiteInfo} from '@/api'
-
+import {GetRequest, PostRequest} from "../api/http"
 Vue.use(Vuex)
 // 略:后台获取系统运行时间
 const runAt = '1589878800000';
@@ -44,12 +44,22 @@ const actions = {
             if (state.websiteInfo){
                 resolve(state.websiteInfo)
             }else {
-                fetchSiteInfo().then(res => {
-                    let data = res.data || {}
+                let datat = {
+                    avatar: 'https://s2.ax1x.com/2020/01/17/1SCadg.png',
+                    slogan: 'The way up is not crowded, and most chose ease.',
+                    name: 'FZY′blog',
+                    domain: 'https://www.fengziy.cn',
+                    notice: '本博客的Demo数据由Mockjs生成',
+                    desc: '一个It技术的探索者'
+                }
+                // commit('SET_SITE_INFO',data);
+                // resolve(data);
+                PostRequest("/site/info").then(res=>{
+                    let data = res.records[0] || datat
                     commit('SET_SITE_INFO',data);
                     resolve(data);
-                }).catch(err => {
-                    resolve({});
+                }).catch(err =>{
+                    resolve([]);
                 })
             }
         })
@@ -59,8 +69,38 @@ const actions = {
             if (state.socials){
                 resolve(state.socials)
             } else {
-                fetchSocial().then(res =>{
-                    let data = res.data || []
+                // let data = [
+                //     {
+                //         id: 1,
+                //         title: '掘金',
+                //         icon: 'icon-bokeblogger3',
+                //         color: '#1AB6FF ',
+                //         href: 'http://wpa.qq.com/msgrd?v=3&uin=1224971566&site=qq&menu=yes'
+                //     },
+                //     {
+                //         id: 2,
+                //         title: 'Gitee',
+                //         icon: 'icongitee',
+                //         color: '#d81e06',
+                //         href: 'https://gitee.com/fengziy'
+                //     },
+                //     {
+                //         id: 3,
+                //         title: 'GitHub',
+                //         icon: 'icong-ithub',
+                //         color: '',
+                //         href: 'https://github.com/fengziye'
+                //     },
+                //     {
+                //         id: 4,
+                //         title: 'CSDN',
+                //         icon: 'icon-csdn',
+                //         color: 'red',
+                //         href: 'https://blog.csdn.net/feng_zi_ye'
+                //     }
+                // ]
+                GetRequest("/socials/info").then(res=>{
+                    let data = res.records || []
                     commit('SET_SOCIALS',data);
                     resolve(data);
                 }).catch(err =>{

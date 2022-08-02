@@ -40,6 +40,14 @@ const routes = [
         name: 'article',
         component: () => import('../views/Articles.vue'),
         meta: { title: '文章'}
+    },
+    {
+        path:'/aboutus',
+        name:"aboutus",
+        component: () => import('../components/img-wall.vue'),
+        meta:{
+            title:'关于我们'
+        }
     }
 ]
 

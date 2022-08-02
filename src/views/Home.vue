@@ -10,7 +10,9 @@
         </div>
         <quote v-else>{{ notice }}</quote>
       </div>
-
+      <!-- <div v-if="hideSlogan">
+        <imgWall></imgWall>
+      </div> -->
       <!--焦点图-->
       <div class="top-feature" v-if="!hideSlogan">
         <section-title>
@@ -42,6 +44,7 @@ import sectionTitle from "@/components/section-title";
 import Post from "@/components/post";
 import SmallIco from "@/components/small-ico";
 import Quote from "@/components/quote";
+import imgWall from "@/components/img-wall";
 import { fetchFocus, fetchList } from "../api";
 import { PostRequest } from "../api/http";
 export default {
@@ -73,19 +76,19 @@ export default {
           id: 1,
           name:'/category/全部',
           title: "全部文章",
-          img: "https://s1.ax1x.com/2020/05/14/YDfRnU.jpg",
+          img: "https://s3.bmp.ovh/imgs/2022/07/30/f29c4f843ed54ec0.jpg",
         },
         {
           id: 2,
           title: "关于我",
           name:'/about',
-          img: "https://s1.ax1x.com/2020/05/14/YDf4AJ.jpg",
+          img: "https://s3.bmp.ovh/imgs/2022/07/30/a0de55f8bb6c8b25.jpg",
         },
         {
           id: 3,
-          title: "文章归档",
-          name:'/bout',
-          img: "https://s1.ax1x.com/2020/05/14/YDfT91.jpg",
+          title: "关于我们",
+          name:'/aboutus',
+          img: "https://s3.bmp.ovh/imgs/2022/07/30/e5e9eb3940c9ac83.jpg",
         },
       ],
       loading: false,
@@ -100,6 +103,7 @@ export default {
     Post,
     SmallIco,
     Quote,
+    imgWall
   },
   watch: {
     // 监控路由

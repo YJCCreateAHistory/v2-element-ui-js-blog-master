@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const request=axios.create({
-  baseURL:'http://localhost:5000/xc-blog/admin',
+  baseURL:'http://101.42.252.67:5220/xc-blog/admin',
+  // baseURL:process.env.VUE_APP_BASE_URL,
   timeout:30000,
 })
 //请求拦截器

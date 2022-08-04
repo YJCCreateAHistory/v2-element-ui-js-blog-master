@@ -51,13 +51,11 @@
         methods:{
             getSocial(){
                 this.$store.dispatch('getSocials').then(data =>{
-                    console.log(data, 1);
                     this.socials = data
                 })
             },
             getWebSiteInfo(){
                 this.$store.dispatch('getSiteInfo').then(data =>{
-                    console.log(data, 2);
 
                     this.websiteInfo = data
                 })

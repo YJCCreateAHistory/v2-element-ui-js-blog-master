@@ -18,7 +18,7 @@ export default {
   methods: {},
   mounted() {
     GetRequest("/img/list").then((data) => {
-      console.log(data);
+      // console.log(data);
       this.urls = data.records;
     });
   },
